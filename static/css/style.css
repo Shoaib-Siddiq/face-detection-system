@@ -18,90 +18,93 @@ body {
     color: var(--text-primary);
     font-family: 'Outfit', sans-serif;
     height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 100vw;
+    margin: 0;
     overflow: hidden;
 }
 
 .cinema-container {
     width: 100vw;
     height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-    gap: 2rem;
-}
-
-.feed-viewport {
-    flex: 1;
-    width: 100%;
-    max-width: 1400px;
-    background: #050505;
-    border-radius: 32px;
-    border: 1px solid var(--border);
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.feed-viewport {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
     overflow: hidden;
-    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
+    z-index: 1;
 }
 
 #videoFeed {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(1.1) contrast(1.1);
+    filter: brightness(1.05) contrast(1.1);
 }
 
 .overlay-grid {
     position: absolute;
     inset: 0;
     background-image:
-        linear-gradient(var(--border) 1px, transparent 1px),
-        linear-gradient(90deg, var(--border) 1px, transparent 1px);
-    background-size: 60px 60px;
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 100px 100px;
     pointer-events: none;
     opacity: 0.15;
+    z-index: 2;
 }
 
 .sentiment-overlay {
+    position: absolute;
+    bottom: 12%;
+    left: 50%;
+    transform: translateX(-50%);
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+    z-index: 10;
+    pointer-events: none;
+    width: 100%;
 }
 
 #currentEmotion {
-    font-size: 6rem;
-    font-weight: 600;
-    letter-spacing: 12px;
+    font-size: 9rem;
+    font-weight: 800;
+    letter-spacing: 20px;
     text-transform: uppercase;
     color: var(--text-primary);
     transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    text-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+    /* High-impact readable shadow */
+    text-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.8),
+        0 0 80px rgba(255, 255, 255, 0.1);
 }
 
 .status-indicator {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.75rem;
-    font-size: 0.8rem;
-    letter-spacing: 3px;
-    font-weight: 600;
-    opacity: 0.5;
+    font-size: 0.7rem;
+    letter-spacing: 5px;
+    font-weight: 700;
+    opacity: 0.8;
+    margin-top: 1.5rem;
+    color: rgba(255, 255, 255, 0.8);
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
 }
 
 .pulse {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     background: var(--success);
     border-radius: 50%;
-    box-shadow: 0 0 0 rgba(16, 185, 129, 0.4);
+    box-shadow: 0 0 15px var(--success);
     animation: pulse 2s infinite;
 }
 
@@ -112,8 +115,8 @@ body {
     }
 
     70% {
-        transform: scale(1);
-        box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+        transform: scale(1.1);
+        box-shadow: 0 0 0 15px rgba(16, 185, 129, 0);
     }
 
     100% {
@@ -122,28 +125,28 @@ body {
     }
 }
 
-/* Emotion Contextual Styling */
+/* Dynamic Intensity Colors */
 .happy #currentEmotion {
     color: #10b981;
-    text-shadow: 0 0 50px rgba(16, 185, 129, 0.4);
+    text-shadow: 0 10px 40px rgba(0, 0, 0, 0.9), 0 0 80px rgba(16, 185, 129, 0.6);
 }
 
 .sad #currentEmotion {
     color: #3b82f6;
-    text-shadow: 0 0 50px rgba(59, 130, 246, 0.4);
+    text-shadow: 0 10px 40px rgba(0, 0, 0, 0.9), 0 0 80px rgba(59, 130, 246, 0.6);
 }
 
 .anger #currentEmotion {
     color: #ef4444;
-    text-shadow: 0 0 50px rgba(239, 68, 68, 0.4);
+    text-shadow: 0 10px 40px rgba(0, 0, 0, 0.9), 0 0 80px rgba(239, 68, 68, 0.6);
 }
 
 .surprise #currentEmotion {
     color: #f59e0b;
-    text-shadow: 0 0 50px rgba(245, 158, 11, 0.4);
+    text-shadow: 0 10px 40px rgba(0, 0, 0, 0.9), 0 0 80px rgba(245, 158, 11, 0.6);
 }
 
 .neutral #currentEmotion {
     color: #ffffff;
-    text-shadow: 0 0 50px rgba(255, 255, 255, 0.2);
+    text-shadow: 0 10px 40px rgba(0, 0, 0, 0.9), 0 0 80px rgba(255, 255, 255, 0.3);
 }
