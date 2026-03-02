@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentry Eye | Face Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard">
+        <header>
+            <div class="logo">
+                <span class="pulse"></span>
+                <h1>SENTRY<span>EYE</span></h1>
+            </div>
+            <div class="status-badge">
+                <span class="indicator"></span>
+                SYSTEM ACTIVE
+            </div>
+        </header>
+
+        <main>
+            <section class="viewport-container">
+                <div class="viewport-header">
+                    <h2>Live Stream</h2>
+                    <div class="controls">
+                        <button id="toggleFeed" class="btn secondary">Pause Feed</button>
+                    </div>
+                </div>
+                <div class="feed-wrapper">
+                    <img id="videoFeed" src="{{ url_for('video_feed') }}" alt="Live Video Feed">
+                    <div class="overlay-grid"></div>
+                </div>
+            </section>
+
+            <section class="sidebar">
+                <div class="card analytics">
+                    <h3>Analytics</h3>
+                    <div class="stat">
+                        <label>Status</label>
+                        <span id="systemStatus">Detection Online</span>
+                    </div>
+                    <div class="stat">
+                        <label>Connection</label>
+                        <span id="connectionType">WebSocket/Stream</span>
+                    </div>
+                </div>
+
+                <div class="card settings">
+                    <h3>System Settings</h3>
+                    <div class="control-group">
+                        <label>Detection Sensitivity</label>
+                        <input type="range" min="1" max="100" value="85">
+                    </div>
+                    <div class="control-group">
+                        <label>Log Activities</label>
+                        <div class="toggle">
+                            <input type="checkbox" id="logToggle" checked>
+                            <label for="logToggle"></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card log-card">
+                    <h3>Activity Log</h3>
+                    <div id="logContent" class="log-content">
+                        <div class="log-entry">System initialized...</div>
+                        <div class="log-entry">Camera feed connected...</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 Sentry Eye Defense Systems. All rights reserved.</p>
+        </footer>
+    </div>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
