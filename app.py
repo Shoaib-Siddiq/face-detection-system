@@ -20,5 +20,10 @@ def video_feed():
     return Response(gen(detector),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
+@app.route('/emotion_status')
+def emotion_status():
+    return {"emotion": detector.last_emotion}
+
 if __name__ == '__main__':
+
     app.run(host='0.0.0.0', port=5001, debug=True)

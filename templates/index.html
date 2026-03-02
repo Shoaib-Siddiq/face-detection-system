@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <div class="dashboard">
         <header>
@@ -36,41 +38,51 @@
                 </div>
             </section>
 
-            <section class="sidebar">
-                <div class="card analytics">
-                    <h3>Analytics</h3>
-                    <div class="stat">
-                        <label>Status</label>
-                        <span id="systemStatus">Detection Online</span>
-                    </div>
-                    <div class="stat">
-                        <label>Connection</label>
-                        <span id="connectionType">WebSocket/Stream</span>
+            <div class="card sentiment-card">
+                <h3>Sentiment Analysis</h3>
+                <div class="emotion-display">
+                    <span id="currentEmotion">Neutral</span>
+                    <div class="emotion-bar-container">
+                        <div id="emotionLevel" class="emotion-bar"></div>
                     </div>
                 </div>
+            </div>
 
-                <div class="card settings">
-                    <h3>System Settings</h3>
-                    <div class="control-group">
-                        <label>Detection Sensitivity</label>
-                        <input type="range" min="1" max="100" value="85">
-                    </div>
-                    <div class="control-group">
-                        <label>Log Activities</label>
-                        <div class="toggle">
-                            <input type="checkbox" id="logToggle" checked>
-                            <label for="logToggle"></label>
-                        </div>
-                    </div>
-                </div>
+            <div class="card analytics">
 
-                <div class="card log-card">
-                    <h3>Activity Log</h3>
-                    <div id="logContent" class="log-content">
-                        <div class="log-entry">System initialized...</div>
-                        <div class="log-entry">Camera feed connected...</div>
+                <h3>Analytics</h3>
+                <div class="stat">
+                    <label>Status</label>
+                    <span id="systemStatus">Detection Online</span>
+                </div>
+                <div class="stat">
+                    <label>Connection</label>
+                    <span id="connectionType">WebSocket/Stream</span>
+                </div>
+            </div>
+
+            <div class="card settings">
+                <h3>System Settings</h3>
+                <div class="control-group">
+                    <label>Detection Sensitivity</label>
+                    <input type="range" min="1" max="100" value="85">
+                </div>
+                <div class="control-group">
+                    <label>Log Activities</label>
+                    <div class="toggle">
+                        <input type="checkbox" id="logToggle" checked>
+                        <label for="logToggle"></label>
                     </div>
                 </div>
+            </div>
+
+            <div class="card log-card">
+                <h3>Activity Log</h3>
+                <div id="logContent" class="log-content">
+                    <div class="log-entry">System initialized...</div>
+                    <div class="log-entry">Camera feed connected...</div>
+                </div>
+            </div>
             </section>
         </main>
 
@@ -80,4 +92,5 @@
     </div>
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
+
 </html>
